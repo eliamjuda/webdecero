@@ -3,11 +3,16 @@
 ## Objetivo
 El objetivo de este examen es evaluar tu capacidad para trabajar con React, manejar la autenticación de usuarios utilizando una API REST y la maquetación de una página web.
 
-## Observaciones y consideraciones
+## Observaciones (LEER ATENTAMENTE)
 **Documentación de evidencias (reports.md)**:
 - Deberás utilizar el archivo `reports.md` localizado en la raíz del proyecto en el cual responderas las preguntas abiertas dentro del mismo. 
 - Si instalas una dependencia o usas algún tipo de patrón, deberás redactar por qué lo utilizaste y por qué consideras que fue la mejor solución.
 - Solo está permitido el uso de documentación oficial de dependencias o tecnologías usadas. El uso de algún motor de IA para generar la solución será motivo inmediatio de descarte.
+
+## Consideraciónes de diseño
+- Las vistas serán con base a los Sketch `login_screen.png` y `profile-screen.png`
+- Usar colores Primario: #1F2226, Secundario: #EA4D88;
+- Fuente a considerar: [https://fonts.google.com/specimen/Quicksand?query=Quicksand] o en su defecto Roboto.
 
 ## Instrucciones
 
