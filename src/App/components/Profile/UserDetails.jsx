@@ -7,14 +7,11 @@
 const UserDetails = ({ details = [] }) => {
   return (
     <div className="space-y-2 p-8">
+      <ul className="list-disc">
       {details.map((detail, index) => (
-        <div 
-          key={index}
-          className="text-sm text-gray-600"
-        >
-          {detail}
-        </div>
+        <li key={index}>{detail}</li>
       ))}
+      </ul>
     </div>
   );
 };

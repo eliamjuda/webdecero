@@ -1,19 +1,19 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './Views/Login/Login';
-import { useSimpleAuth } from './hooks/useSimpleAuth';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Profile from './Views/Profile/Profile';
+import { useAuth } from './context/AuthContext';
 
 
 
 function App() {
-  const { isAuthenticated, loading } = useSimpleAuth();
+  const { isAuthenticated, loading } = useAuth();
 
   // Mostrar loading mientras verifica autenticación
   if (loading) {
     return (
-      <div className="min-h-screen bg-[--principal-color] flex items-center justify-center">
+      <div className="min-h-screen bg-[--principal-color] w-full flex items-center justify-center">
         <div className="text-white">
           <div className="flex items-center">
             <svg className="animate-spin -ml-1 mr-3 h-8 w-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

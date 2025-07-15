@@ -17,7 +17,7 @@ const ProfileCard = ({ user, onLogout }) => {
   return (
     <div className="relative">
       <InfoCard className="min-h-[400px]">
-        <Avatar className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+        <Avatar src={user.image} className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2" />
 
         <LogoutButton onClick={onLogout} />
 

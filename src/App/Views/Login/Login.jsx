@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSimpleAuth } from '../../hooks/useSimpleAuth';
 import LoginForm from '../../components/Login/form/LoginForm';
+import { useAuth } from '../../context/AuthContext';
 
 const Login = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   
-  const { login, isAuthenticated } = useSimpleAuth();
+  const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   // Redireccionar si ya está autenticado
   useEffect(() => {
     if (isAuthenticated) {
+      console.log("ya está autenticado, le redirigimos a profile")
       navigate('/profile', { replace: true });
     }
   }, [isAuthenticated, navigate]);
@@ -29,6 +30,7 @@ const Login = () => {
 
       if (success) {
         // redirección
+      navigate('/profile', { replace: true });
         console.log('Login exitoso - redirigiendo...');
       } else {
         setError('Credenciales incorrectas.');
