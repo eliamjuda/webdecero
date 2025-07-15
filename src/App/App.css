@@ -6,7 +6,9 @@
 
 :root {
   --primary-color: #1f2226;
-  --secondary-color: #EA4D88;;
+  --secondary-color: #EA4D88;
+
+  --secondary-color-hover: rgb(202, 57, 113);
 }
 
 .App {
