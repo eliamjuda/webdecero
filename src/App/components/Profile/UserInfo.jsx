@@ -26,20 +26,17 @@ const UserInfo = ({ name, email, location }) => {
 
   return (
     <div className="text-center mt-16 mb-6 ">
-      {/* Nombre del usuario */}
-      <h2 className="text-xl font-bold text-[#EA4D88] mb-1">
+      <h2 className="text-xl font-bold text-[--secondary-color] mb-1">
         {name}
       </h2>
       
-      {/* Correo del usuario */}
       <p className="text-gray-600 text-sm mb-2">
         {email}
       </p>
       
-      {/* Ubicación */}
       <div className="flex items-center justify-center text-gray-500 text-sm">
         <LocationIcon />
-        <span className="ml-1">{location}</span>
+        <span className="ml-1">{location.city} - {location.country}</span>
       </div>
     </div>
   );

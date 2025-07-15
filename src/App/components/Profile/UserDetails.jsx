@@ -1,6 +1,3 @@
-// App/components/profile/UserDetails.jsx
-import React from 'react';
-
 /**
  * Componente UserDetails - Muestra información adicional del usuario
  * @param {Object} props - Propiedades del componente

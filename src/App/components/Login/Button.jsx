@@ -24,12 +24,12 @@ const Button = ({
       onClick={onClick}
       disabled={disabled || loading}
       className={`
-        w-full bg-[#EA4D88] hover:bg-[#d63d75] active:bg-[#c2356a]
+        w-full bg-[--secondary-color] hover:bg-[#d63d75] active:bg-[#c2356a]
         text-white py-3 px-4 rounded-[4px] font-semibold 
         transition-all duration-200 ease-in-out
-        focus:outline-none focus:ring-2 focus:ring-[#EA4D88] focus:ring-offset-2 focus:ring-offset-[#1F2226]
-        transform hover:scale-[1.02] active:scale-[0.98]
-        disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:bg-[#EA4D88]
+        focus:outline-none focus:ring-2 focus:ring-[--secondary-color] focus:ring-offset-2 focus:ring-offset-[--principal-color]
+        transform
+        disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:bg-[--secondary-color]
         ${className}
       `}
       {...props}
