@@ -13,3 +13,7 @@
 ### Tailwind
 Instalé Tailwind porque en lo personal creo que agiliza el diseño y desarrollo UI, pero sini quitar que sea personalizable
 
+### react-hook-form 
+Después de leer la documentación y casos de uso entre react-hook-form y Formik, me decliné por react-hook-form
+por ser más fácil de implementar, ya que Formik es para formularios mucho más complejos y acá no se necesita añadir complejidad para dos inputs
+

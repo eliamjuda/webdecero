@@ -1,29 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, forwardRef } from "react";
 
 /**
  * Componente Input
  * @param {Object} props - Propiedades del componente
  * @param {string} props.type - Tipo de input
- * @param {string} props.name - Nombre del input
  * @param {string} props.placeholder - Placeholder del input
- * @param {string} props.value - Valor del input
- * @param {function} props.onChange - Función para manejar cambios
+ * @param {boolean} props.isValid - Booleano de si es válido para estilos de error
  * @param {React.Component} props.icon - Icono a mostrar
- * @param {boolean} props.required - Si el campo es requerido
  * @param {string} props.className - Clases adicionales
  * @returns {JSX.Element} Elemento JSX del input
  */
-const Input = ({
+const Input = forwardRef(({
   type = "text",
-  name,
   placeholder,
-  value,
-  onChange,
+  isValid,
   icon,
-  required = false,
   className = "",
   ...props
-}) => {
+}, ref) => {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
@@ -34,6 +28,8 @@ const Input = ({
         ${isFocused ? "bg-[#2A2F35]" : "bg-[#32363C]"} 
         rounded-l-[4px] flex justify-center items-center text-white
         transition-colors duration-200 ease-in-out
+        ${isValid ? "bg-[#363B41]" : "bg-red-900"}  
+
       `}
       >
         <svg
@@ -51,26 +47,26 @@ const Input = ({
       </div>
 
       <input
+        ref={ref}
         type={type}
-        name={name}
         placeholder={placeholder}
-        value={value}
-        onChange={onChange}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
-        required={required}
         className={`
           w-full pl-16 pr-4 py-4
-          ${isFocused ? "bg-[#3A4047]" : "bg-[#363B41]"} 
+          ${isFocused ? "bg-[#3A4047]" : "bg-[#363B41]"}
           text-white placeholder-gray-400 rounded-[5px] 
           focus:outline-none focus:ring-0 outline-none
           border-none transition-all duration-200 ease-in-out
           hover:bg-[#3A4047]
+          border-1 border-red-100
         `}
         {...props}
       />
     </div>
   );
-};
+});
+
+Input.displayName = 'Input';
 
 export default Input;

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import Input from '../Input';
 import PasswordInput from '../PasswordInput';
 import Button from '../Button';
@@ -12,48 +12,85 @@ import Button from '../Button';
  * @returns {JSX.Element} Elemento JSX del formulario de login
  */
 const LoginForm = ({ onSubmit, loading = false, error = '' }) => {
-  const [formData, setFormData] = useState({
-    username: '',
-    password: ''
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+    watch
+  } = useForm({
+    mode: 'onChange',
+    defaultValues: {
+      username: '',
+      password: ''
+    }
   });
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+  // Observar los valores para controlar el estado del botón
+  const watchedValues = watch();
+  const hasValues = watchedValues.username && watchedValues.password;
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleFormSubmit = (formData) => {
     onSubmit(formData);
   };
 
   return (
     <div className="w-full max-w-md mx-auto px-4 sm:px-0">
-      <form onSubmit={handleSubmit} className="space-y-5 px-5">
-        {/* Input Usuario */}
-        <Input
-          type="text"
-          name="username"
-          placeholder="Usuario"
-          value={formData.username}
-          onChange={handleChange}
-          required
-        />
+      <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-2 px-5">
+        <div>
+          <Input
+            type="text"
+            placeholder="Usuario"
+            isValid={errors.username ? false : true}
+            {...register('username', {
+              required: 'El usuario es requerido',
+              minLength: {
+                value: 3,
+                message: 'El usuario debe tener al menos 3 caracteres'
+              },
+              maxLength: {
+                value: 25,
+                message: 'El usuario no debe sobrepasar los 20 caracteres'
+              },
+              pattern: {
+                value: /^[a-zA-Z0-9_]+$/,
+                message: 'El usuario solo puede contener letras y números'
+              }
+            })}
+          />
+          <div className='h-[30px] p-2'>
+            {errors.username && (
+              <p className={`text-xs text-red-400`}>
+                {errors.username.message}
+              </p>
+            )}
+          </div>
+        </div>
 
-        <PasswordInput
-          name="password"
-          placeholder="Contraseña"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
+        <div>
+          <PasswordInput
+            isValid={errors.password ? false : true}
+            placeholder="Contraseña"
+            {...register('password', {
+              required: 'La contraseña es requerida',
+              minLength: {
+                value: 5,
+                message: 'La contraseña debe tener al menos 5 caracteres'
+              }
+            })}
+          />
+          <div className='h-[30px] p-2'>
+            {errors.password && (
+              <p className={`text-xs text-red-400`}>
+                {errors.password.message}
+              </p>
+            )}
+          </div>
+        </div>
 
         <Button
           type="submit"
           loading={loading}
-          disabled={!formData.username || !formData.password}
+          disabled={!hasValues || !isValid}
         >
           AUTENTICAR
         </Button>

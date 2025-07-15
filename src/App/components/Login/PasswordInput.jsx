@@ -1,25 +1,21 @@
-import { useState } from 'react';
+import { useState, forwardRef } from 'react';
 
 /**
  * Componente PasswordInput con toggle de visibilidad
  * @param {Object} props - Propiedades del componente
  * @param {string} props.name - Nombre del input
  * @param {string} props.placeholder - Placeholder del input
- * @param {string} props.value - Valor del input
- * @param {function} props.onChange - Función para manejar cambios
- * @param {boolean} props.required - Si el campo es requerido
+ * @param {boolean} props.isValid - Booleano de si es válido para estilos de error
  * @param {string} props.className - Clases adicionales
  * @returns {JSX.Element} Elemento JSX del password input
  */
-const PasswordInput = ({
+const PasswordInput = forwardRef(({
   name,
   placeholder,
-  value,
-  onChange,
-  required = false,
+  isValid,
   className = '',
   ...props
-}) => {
+}, ref) => {
   const [isFocused, setIsFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -84,19 +80,18 @@ const PasswordInput = ({
         ${isFocused ? 'bg-[#2A2F35]' : 'bg-[#32363C]'} 
         rounded-l-[4px] flex justify-center items-center text-white
         transition-colors duration-200 ease-in-out
+        ${isValid ? "bg-[#363B41]" : "bg-red-900"}  
       `}>
         <KeyIcon />
       </div>
       
       <input
+        ref={ref}
         type={showPassword ? 'text' : 'password'}
         name={name}
         placeholder={placeholder}
-        value={value}
-        onChange={onChange}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
-        required={required}
         className={`
           w-full pl-16 pr-12 py-4 
           ${isFocused ? 'bg-[#3A4047]' : 'bg-[#363B41]'} 
@@ -120,6 +115,8 @@ const PasswordInput = ({
       </button>
     </div>
   );
-};
+});
+
+PasswordInput.displayName = 'PasswordInput';
 
 export default PasswordInput;
